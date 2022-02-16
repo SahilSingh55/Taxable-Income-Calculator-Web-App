@@ -1,19 +1,23 @@
+const dotenv = require("dotenv");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-const PORT = 3030;
+dotenv.config({ path:'./config.env' });
+require('./db/conn');
+
+const PORT = process.env.PORT;
 const app = express();   
-const connectionOptions = { useUnifiedTopology: true, useNewUrlParser: true};
 
 
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
 
-mongoose.connect("mongodb://localhost:27017/myTaxableIncomeDB", connectionOptions)
-    .then(() => console.log("Connected successfully"))
-    .catch((err) => console.error(err));
+    
+// mongoose.connect("mongodb://localhost:27017/myTaxableIncomeDB", connectionOptions)
+//     .then(() => console.log("Connected successfully"))
+//     .catch((err) => console.error(err));
 
 const userSchema = new mongoose.Schema({
     name: String,
@@ -98,5 +102,5 @@ app.post("/homepage", (req, res)=> {
 }); 
 
 app.listen(PORT, () => {
-    console.log("The server is listening on port " + PORT);
+    console.log(`The server is listening on port ${PORT}`);
 });

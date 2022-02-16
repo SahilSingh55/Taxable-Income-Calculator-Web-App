@@ -51,20 +51,19 @@ const Homepage = ({ setLoginUser }) => {
             .then(res => {
                 alert(res.data.message)
                 setTaxInc(TaxInc)
+                setPara({
+                    Bas: "",
+                    LTA: "",
+                    HRA: "",
+                    FA: "",
+                    Inv: "",
+                    Rent: "",
+                    CityType: "",
+                    Med: "",
+                    AppHRA: ""
+                })
                 // navigate("/")
-            })
-
-        setPara({
-            Bas: "",
-            LTA: "",
-            HRA: "",
-            FA: "",
-            Inv: "",
-            Rent: "",
-            CityType: "",
-            Med: "",
-            AppHRA: ""
-        })
+            }) 
     }
 
     return (
